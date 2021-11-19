@@ -19,6 +19,8 @@ class QuizQuestionsActivity : AppCompatActivity(), View.OnClickListener {
     private var mQuestionList: ArrayList<Question>? = null
     private var mSelectedOptionPosition: Int = 0
     private var points: Int = 0
+    private var optionSelected: Boolean = false
+    private var optionLocked: Boolean = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -57,6 +59,8 @@ class QuizQuestionsActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     private fun defaultOptionsView() {
+        optionSelected = false
+        optionLocked = false
 
         val options = ArrayList<TextView>()
         options.add(0, tv_option_one)
@@ -90,52 +94,63 @@ class QuizQuestionsActivity : AppCompatActivity(), View.OnClickListener {
                 selectedOptionView(tv_option_four, 4)
             }
             R.id.btn_submit -> {
-                if (mSelectedOptionPosition == 0) {
-                    mCurrentPosition++
+                if ( optionSelected ){
+                    if (mSelectedOptionPosition == 0) {
+                        mCurrentPosition++
 
-                    when {
-                        mCurrentPosition <= mQuestionList!!.size -> {
-                            setQuestion()
+                        when {
+                            mCurrentPosition <= mQuestionList!!.size -> {
+                                setQuestion()
+                            }
+                            else -> {
+                                Toast.makeText(
+                                    this,
+                                    "Ukończyłeś quiz!", Toast.LENGTH_SHORT
+                                ).show()
+                                val intent = Intent(this, ResultActivity::class.java)
+                                intent.putExtra("points", points)
+                                startActivity(intent)
+                            }
                         }
-                        else -> {
-                            Toast.makeText(
-                                this,
-                                "Ukończyłeś quiz!", Toast.LENGTH_SHORT
-                            ).show()
-                            val intent = Intent(this,ResultActivity::class.java)
-                            intent.putExtra("points", points)
-                            startActivity(intent)
+                    } else {
+                        val question = mQuestionList?.get(mCurrentPosition - 1)
+                        if (question!!.correctOption != mSelectedOptionPosition) {
+                            answerView(mSelectedOptionPosition, R.drawable.wrong_option_border_bg)
+                        } else {
+                            answerView(question.correctOption, R.drawable.correct_option_border_bg)
+                            points++;
                         }
+                        if (mCurrentPosition == mQuestionList!!.size) {
+                            btn_submit.text = "Zakończ"
+                        } else {
+                            btn_submit.text = "Dalej"
+                            optionLocked = true
+                        }
+                        mSelectedOptionPosition = 0
                     }
-                } else {
-                    val question = mQuestionList?.get(mCurrentPosition - 1)
-                    if (question!!.correctOption != mSelectedOptionPosition) {
-                        answerView(mSelectedOptionPosition, R.drawable.wrong_option_border_bg)
-                    } else {
-                        answerView(question.correctOption, R.drawable.correct_option_border_bg)
-                        points++;
-                    }
-                    if (mCurrentPosition == mQuestionList!!.size) {
-                        btn_submit.text = "Zakończ"
-                    } else {
-                        btn_submit.text = "Dalej"
-                    }
-                    mSelectedOptionPosition = 0
                 }
-
+                else {
+                    Toast.makeText(
+                        this,
+                        "Wybierz odpowiedź", Toast.LENGTH_SHORT
+                    ).show()
+                }
             }
         }
     }
 
     private fun selectedOptionView(tv: TextView, selectedOptionNum: Int) {
-        defaultOptionsView()
-        mSelectedOptionPosition = selectedOptionNum
-        tv.setTextColor(Color.parseColor("#363A43"))
-        tv.setTypeface(tv.typeface, Typeface.BOLD)
-        tv.background = ContextCompat.getDrawable(
-            this,
-            R.drawable.selected_option_border_bg
-        )
+        if(!optionLocked) {
+            defaultOptionsView()
+            mSelectedOptionPosition = selectedOptionNum
+            tv.setTextColor(Color.parseColor("#363A43"))
+            tv.setTypeface(tv.typeface, Typeface.BOLD)
+            tv.background = ContextCompat.getDrawable(
+                this,
+                R.drawable.selected_option_border_bg
+            )
+            optionSelected = true
+        }
     }
 
     private fun answerView(answer: Int, drawableView: Int) {
