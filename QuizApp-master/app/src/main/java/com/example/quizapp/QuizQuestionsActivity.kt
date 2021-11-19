@@ -11,12 +11,14 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.core.content.ContextCompat
 import kotlinx.android.synthetic.main.activity_quiz_questions.*
+import kotlinx.android.synthetic.main.activity_quiz_questions.btn_submit
 
 class QuizQuestionsActivity : AppCompatActivity(), View.OnClickListener {
 
     private var mCurrentPosition: Int = 1
     private var mQuestionList: ArrayList<Question>? = null
     private var mSelectedOptionPosition: Int = 0
+    private var points: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,8 +32,6 @@ class QuizQuestionsActivity : AppCompatActivity(), View.OnClickListener {
         tv_option_three.setOnClickListener(this)
         tv_option_four.setOnClickListener(this)
         btn_submit.setOnClickListener(this)
-
-
     }
 
     @SuppressLint("SetTextI18n")
@@ -102,7 +102,8 @@ class QuizQuestionsActivity : AppCompatActivity(), View.OnClickListener {
                                 this,
                                 "Ukończyłeś quiz!", Toast.LENGTH_SHORT
                             ).show()
-                            val intent = Intent(this,MainActivity::class.java)
+                            val intent = Intent(this,ResultActivity::class.java)
+                            intent.putExtra("points", points)
                             startActivity(intent)
                         }
                     }
@@ -110,8 +111,10 @@ class QuizQuestionsActivity : AppCompatActivity(), View.OnClickListener {
                     val question = mQuestionList?.get(mCurrentPosition - 1)
                     if (question!!.correctOption != mSelectedOptionPosition) {
                         answerView(mSelectedOptionPosition, R.drawable.wrong_option_border_bg)
+                    } else {
+                        answerView(question.correctOption, R.drawable.correct_option_border_bg)
+                        points++;
                     }
-                    answerView(question.correctOption, R.drawable.correct_option_border_bg)
                     if (mCurrentPosition == mQuestionList!!.size) {
                         btn_submit.text = "Zakończ"
                     } else {
