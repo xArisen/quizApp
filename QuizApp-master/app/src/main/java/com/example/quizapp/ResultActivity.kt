@@ -14,6 +14,7 @@ class ResultActivity : AppCompatActivity(), View.OnClickListener {
         super.onCreate(savedInstanceState)
 
         setContentView(R.layout.activity_quiz_result)
+                //Pobieranie przesłanych z poprzedniego widoku punktów
                 points = intent.getIntExtra("points", 0)
                 tv_result.text = "$points/10"
 
