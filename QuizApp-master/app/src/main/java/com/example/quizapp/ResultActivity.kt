@@ -1,6 +1,5 @@
 package com.example.quizapp;
 
-import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
@@ -11,7 +10,6 @@ class ResultActivity : AppCompatActivity(), View.OnClickListener {
 
         private var points: Int = 0
 
-        @SuppressLint("SetTextI18n")
         override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -27,6 +25,7 @@ class ResultActivity : AppCompatActivity(), View.OnClickListener {
                         R.id.btn_submit -> {
                                 val intent = Intent(this,MainActivity::class.java)
                                 startActivity(intent)
+                                finish()
                         }
                 }
         }

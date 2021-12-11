@@ -1,5 +1,6 @@
 package com.example.quizapp
 
+//Klasa ze stałymi - przechowuje pytania
 object Constants {
     fun getQuestions(): ArrayList<Question> {
         val questionsList = ArrayList<Question>()
@@ -16,7 +17,7 @@ object Constants {
         questionsList.add(question1)
 
         val question2 = Question(
-            1,
+            2,
             "Ile ważyła największa wyhodowana cebula?",
             "8,25 kg",
             "10,23 kg",
@@ -27,7 +28,7 @@ object Constants {
         questionsList.add(question2)
 
         val question3 = Question(
-            1,
+            3,
             "Jak nazywa się najdroższa kawa na świecie?",
             "Sanden-Sa",
             "Kopi-Luwak",
@@ -38,7 +39,7 @@ object Constants {
         questionsList.add(question3)
 
         val question4 = Question(
-            1,
+            4,
             "Którą markę samochodów najczęściej wybierają Polacy?",
             "Skoda",
             "BMW",
@@ -49,7 +50,7 @@ object Constants {
         questionsList.add(question4)
 
         val question5 = Question(
-            1,
+            5,
             "Jak w dawnej Polsce nazywano liczby ujemne?",
             "Liczby minusowe",
             "Liczby względne",
@@ -60,7 +61,7 @@ object Constants {
         questionsList.add(question5)
 
         val question6 = Question(
-            1,
+            6,
             "Ile metrów wysokości ma Piramida Cheopsa?",
             "254 m",
             "137 m",
@@ -71,7 +72,7 @@ object Constants {
         questionsList.add(question6)
 
         val question7 = Question(
-            1,
+            7,
             "Ile procent populacji świata ma niebieskie oczy?",
             "16%",
             "39%",
@@ -82,7 +83,7 @@ object Constants {
         questionsList.add(question7)
 
         val question8 = Question(
-            1,
+            8,
             "Na jakiej wysokości (od górnej taśmy do parkietu) jest zawieszona siatka w meczu siatkówki kobiet?",
             "2,13 m",
             "2,28 m",
@@ -93,7 +94,7 @@ object Constants {
         questionsList.add(question8)
 
         val question9 = Question(
-            1,
+            9,
             "Ile jest kilometrów od Pragi do Budapesztu?",
             "525 km",
             "423 km",
@@ -104,7 +105,7 @@ object Constants {
         questionsList.add(question9)
 
         val question10 = Question(
-            1,
+            10,
             "W jakich kolorach świat widzą psy?",
             "Fioletowo-niebiesko",
             "Zielono-żółto",
