@@ -127,8 +127,8 @@ class QuizQuestionsActivity : AppCompatActivity(), View.OnClickListener {
                             btn_submit.text = "Zakończ"
                         } else {
                             btn_submit.text = "Dalej"
-                            optionLocked = true
                         }
+                        optionLocked = true
                         mSelectedOptionPosition = 0
                     }
                 } else {

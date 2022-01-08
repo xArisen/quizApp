@@ -22,7 +22,7 @@
             android:layout_margin="10dp"
             android:fontFamily="@font/roboto"
             android:gravity="center"
-            android:text="Which internet company began life as an online bookstore called &#039;Cadabra&#039;?"
+            android:text="Co tam u Ciebie?"
             android:textColor="#363A43"
             android:textSize="22sp">
         </TextView>
@@ -71,7 +71,7 @@
             android:padding="15dp"
             android:textColor="#7A8089"
             android:textSize="18sp"
-            tools:text="Apple">
+            tools:text="Dobrze">
         </TextView>
 
         <TextView
@@ -85,7 +85,7 @@
             android:padding="15dp"
             android:textColor="#7A8089"
             android:textSize="18sp"
-            tools:text="Apple">
+            tools:text="Lepiej">
         </TextView>
 
         <TextView
@@ -99,7 +99,7 @@
             android:padding="15dp"
             android:textColor="#7A8089"
             android:textSize="18sp"
-            tools:text="Apple">
+            tools:text="Najlepiej">
         </TextView>
 
         <TextView
@@ -113,7 +113,7 @@
             android:padding="15dp"
             android:textColor="#7A8089"
             android:textSize="18sp"
-            tools:text="Apple">
+            tools:text="Źle">
         </TextView>
 
         <Button
